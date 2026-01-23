@@ -1,1 +1,32 @@
 
+# --- GODOT ---
+.godot/
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (if using)
+*.translation
+
+# Mono/C# builds (if using C#)
+.mono/
+data_*/
+mono_crash.*.json
+
+# --- MACOS (The Culprits) ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# --- WINDOWS (Just in case a teammate uses PC) ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- IDEs / EDITORS ---
+.vscode/
+.idea/
+*.sln
+*.csproj
+*.unityproj
