@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8ki8gg6e5d6y"]
+
+[ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://2voi264ic4d4" path="res://Map.tscn" id="2_e2o6t"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+position = Vector2(1343, 367)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(21.000004, 8)
+scale = Vector2(3.9760523, 3.829717)

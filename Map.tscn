@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2voi264ic4d4"]
+
+[ext_resource type="Script" uid="uid://c4o15dsn3tf7t" path="res://map.gd" id="1_3vi7k"]
+[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_3h1ab"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_3vi7k")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(142.5, 80)
+scale = Vector2(2.2265623, 1.2734375)
+texture = ExtResource("2_3h1ab")
