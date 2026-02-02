@@ -1,25 +1,29 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const boost_speed = 600.0
+const WALK_SPEED = 300
+const BOOST_SPEED = 600
+
+# Gravity from project settings
+
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	
+	# Apply gravity
+# Add the gravity. 
 
 
+	var vertical_input := Input.get_axis("ui_down", "ui_up")
 
-	
-	velocity = direction * SPEED
-	
+	# Horizontal input (left/right)
+	var horizontal_input := Input.get_axis("ui_left", "ui_right", )
 
+	# Choose speed: walk or sprint
+	var current_speed = WALK_SPEED
+	if Input.is_action_pressed("boost"):
+		current_speed = BOOST_SPEED
+
+
+	# Set horizontal velocity
+	velocity.x = horizontal_input * current_speed
+	velocity.y = vertical_input * current_speed
+	# Move the character with collisions
 	move_and_slide()
-	
-	
