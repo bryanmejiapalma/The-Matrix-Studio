@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 200.0
 # Adjust this to stop the "shaking" when the enemy touches the player
 const STOP_DISTANCE = 20.0 
+@onready var hitbox: Area2D = %Hitbox
+
 
 func _physics_process(_delta: float) -> void:
 	# 1. Find the player node (Assumes your player node is named "Player")

@@ -30,7 +30,9 @@ unique_name_in_owner = true
 wait_time = 1.5
 one_shot = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_kpjcp")
 

@@ -19,12 +19,12 @@ texture = ExtResource("2_4gyqm")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(19.5, -22)
 scale = Vector2(1.2299999, 1.2399999)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 unique_name_in_owner = true
 scale = Vector2(0.8130082, 0.8064517)
 shape = SubResource("RectangleShape2D_4gyqm")
