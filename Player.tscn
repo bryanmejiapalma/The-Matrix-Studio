@@ -1,27 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=5 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kpjcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(125, 119)
+size = Vector2(110, 47.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
+radius = 55.00909
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(157, 106)
-motion_mode = 1
+position = Vector2(124, 89)
 script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_kne1u")
+unique_name_in_owner = true
+position = Vector2(-3.9999695, 111)
+scale = Vector2(4.2000003, 3.731875)
+texture = ExtResource("2_kpjcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(-5, 36)
 shape = SubResource("RectangleShape2D_kpjcp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 1.5
 one_shot = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_kpjcp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

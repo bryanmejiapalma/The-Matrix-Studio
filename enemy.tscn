@@ -1,19 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://de4kmcsnttwa0"]
 
-[ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_qi2p4"]
+[ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(124, 124)
+size = Vector2(121, 124)
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(310, 276)
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(20, -22)
-texture = ExtResource("2_qi2p4")
+unique_name_in_owner = true
+position = Vector2(19.500004, -21.999996)
+scale = Vector2(1.2299999, 1.2399999)
+texture = ExtResource("2_4gyqm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, -22)
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(19.5, -22)
+scale = Vector2(1.2299999, 1.2399999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+scale = Vector2(0.8130082, 0.8064517)
 shape = SubResource("RectangleShape2D_4gyqm")

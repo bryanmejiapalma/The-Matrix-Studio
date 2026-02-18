@@ -4,6 +4,9 @@ extends CharacterBody2D
 const WALK_SPEED = 300
 const BOOST_SPEED = 600
 
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var timer: Timer = %Timer
+
 # Gravity from project settings
 
 
@@ -30,6 +33,9 @@ func _physics_process(delta: float) -> void:
 
 	if  Input.is_action_just_pressed("boost"):
 		current_speed *=  BOOST_SPEED
-	
+		get_node("Timer").start()
+		
+		
 
 	move_and_slide()
+	
