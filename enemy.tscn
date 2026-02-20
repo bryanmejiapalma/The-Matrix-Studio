@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(121, 124)
+[ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="4_iifgy"]
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(310, 276)
@@ -21,10 +19,10 @@ unique_name_in_owner = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(19.5, -22)
+position = Vector2(-174, -61)
 scale = Vector2(1.2299999, 1.2399999)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="Killzone" parent="Hitbox" instance=ExtResource("4_iifgy")]
 unique_name_in_owner = true
-scale = Vector2(0.8130082, 0.8064517)
-shape = SubResource("RectangleShape2D_4gyqm")
+position = Vector2(156.09758, 33.06452)
+scale = Vector2(5.0050416, 4.815448)

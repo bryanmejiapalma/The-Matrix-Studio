@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://djep46gi8lc60"]
+
+[ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_pe84g"]
+[ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="2_g1u42"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_pe84g")]
+
+[node name="Killzone" parent="." instance=ExtResource("2_g1u42")]
+position = Vector2(239, 219)
+rotation = -0.80667156
+scale = Vector2(13.123221, 8.821456)

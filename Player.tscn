@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=4 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kpjcp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpjcp"]
-size = Vector2(110, 47.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
 radius = 55.00909
@@ -19,21 +16,13 @@ position = Vector2(-3.9999695, 111)
 scale = Vector2(4.2000003, 3.731875)
 texture = ExtResource("2_kpjcp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 36)
-shape = SubResource("RectangleShape2D_kpjcp")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 1.5
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 6)
 shape = SubResource("CircleShape2D_kpjcp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
