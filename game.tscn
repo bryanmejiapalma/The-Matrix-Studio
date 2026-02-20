@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ki8gg6e5d6y"]
+[gd_scene load_steps=6 format=3 uid="uid://c8ki8gg6e5d6y"]
 
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://2voi264ic4d4" path="res://Map.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://dthilph7k8yvd" path="res://Walls.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://diiaq0oy71ohy" path="res://apple.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://de4kmcsnttwa0" path="res://enemy.tscn" id="5_7jktm"]
 
 [node name="Game" type="Node2D"]
 
@@ -11,7 +13,7 @@ position = Vector2(205, -22)
 scale = Vector2(3.9760523, 3.829717)
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(114, 335)
+position = Vector2(845, 345)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(119, -13)
@@ -29,3 +31,9 @@ rotation = -1.5916418
 [node name="StaticBody2D6" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(201.99998, 37)
 rotation = -1.586398
+
+[node name="Apple" parent="." instance=ExtResource("4_fc0e3")]
+position = Vector2(830, 14)
+
+[node name="enemy" parent="." instance=ExtResource("5_7jktm")]
+position = Vector2(285, 495)

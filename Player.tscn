@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_kpjcp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
 radius = 55.00909
@@ -12,8 +12,8 @@ script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.9999695, 111)
-scale = Vector2(4.2000003, 3.731875)
+position = Vector2(-6, 8)
+scale = Vector2(0.7015622, 0.8346875)
 texture = ExtResource("2_kpjcp")
 
 [node name="Timer" type="Timer" parent="."]
@@ -24,5 +24,14 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 6)
 shape = SubResource("CircleShape2D_kpjcp")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -69.0
+offset_top = -88.0
+offset_right = 54.0
+offset_bottom = -61.0
+theme_override_colors/font_color = Color(0.81960785, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.73971456, 1.1551381e-06, 1)
+value = 100.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
