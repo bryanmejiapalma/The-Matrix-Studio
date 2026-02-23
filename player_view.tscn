@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhjm0wh2aj3d3"]
+
+[ext_resource type="Texture2D" uid="uid://dsqdid5538s0d" path="res://Sprite-0001 2.png" id="1_je4ro"]
+
+[node name="PointLight2D" type="PointLight2D"]
+position = Vector2(72, 82)
+texture = ExtResource("1_je4ro")
+
+[node name="Sprite00012" type="Sprite2D" parent="."]
+position = Vector2(24, -14.5)
+scale = Vector2(2.25, 1.96875)
+texture = ExtResource("1_je4ro")

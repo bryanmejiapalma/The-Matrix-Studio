@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=5 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_kpjcp"]
+[ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="3_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
 radius = 55.00909
@@ -33,5 +34,9 @@ offset_bottom = -61.0
 theme_override_colors/font_color = Color(0.81960785, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0.73971456, 1.1551381e-06, 1)
 value = 100.0
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_kne1u")]
+position = Vector2(-131, 79)
+scale = Vector2(5.6250005, 5.1875)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
