@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=6 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
-[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kne1u"]
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="3_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
 radius = 55.00909
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
+radius = 49.0408
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(124, 89)
@@ -13,9 +16,9 @@ script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-6, 8)
-scale = Vector2(0.7015622, 0.8346875)
-texture = ExtResource("2_kpjcp")
+position = Vector2(-4.9999924, 91)
+scale = Vector2(3.1150002, 3.04)
+texture = ExtResource("2_kne1u")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -38,5 +41,16 @@ value = 100.0
 [node name="PointLight2D" parent="." instance=ExtResource("3_kne1u")]
 position = Vector2(-131, 79)
 scale = Vector2(5.6250005, 5.1875)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PickupZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
+position = Vector2(-5, 5)
+shape = SubResource("CircleShape2D_e80uo")
+
+[node name="HoldPosition" type="Marker2D" parent="."]
+position = Vector2(30, 32)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

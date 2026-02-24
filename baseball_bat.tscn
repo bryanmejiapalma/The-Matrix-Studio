@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://tveac6mrpxec"]
+
+[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="1_spgei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3ktl"]
+size = Vector2(125, 120)
+
+[node name="baseball bat" type="Area2D" groups=["pickable"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["pickable"]]
+scale = Vector2(0.3381294, 0.39799342)
+texture = ExtResource("1_spgei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.3381294, 0.39799342)
+shape = SubResource("RectangleShape2D_b3ktl")
