@@ -39,8 +39,8 @@ theme_override_colors/font_outline_color = Color(0, 0.73971456, 1.1551381e-06, 1
 value = 100.0
 
 [node name="PointLight2D" parent="." instance=ExtResource("3_kne1u")]
-position = Vector2(-131, 79)
-scale = Vector2(5.6250005, 5.1875)
+position = Vector2(-165, 77.99999)
+scale = Vector2(7.28125, 6.875)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
