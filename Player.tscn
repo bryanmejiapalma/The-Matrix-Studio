@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="3_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
-radius = 55.00909
+radius = 35.128338
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
-radius = 49.0408
+radius = 32.140316
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(124, 89)
@@ -26,7 +26,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 6)
+position = Vector2(-7, 23)
 shape = SubResource("CircleShape2D_kpjcp")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -47,7 +47,7 @@ scale = Vector2(7.28125, 6.875)
 [node name="PickupZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
-position = Vector2(-5, 5)
+position = Vector2(-8, -6)
 shape = SubResource("CircleShape2D_e80uo")
 
 [node name="HoldPosition" type="Marker2D" parent="."]

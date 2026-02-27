@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://de4kmcsnttwa0"]
+[gd_scene load_steps=5 format=3 uid="uid://de4kmcsnttwa0"]
 
 [ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="4_iifgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
+size = Vector2(99.715454, 95.967766)
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(310, 276)
@@ -24,5 +27,11 @@ scale = Vector2(1.2299999, 1.2399999)
 
 [node name="Killzone" parent="Hitbox" instance=ExtResource("4_iifgy")]
 unique_name_in_owner = true
-position = Vector2(156.09758, 33.06452)
-scale = Vector2(5.0050416, 4.815448)
+position = Vector2(156.91058, 32.258064)
+scale = Vector2(5.1050415, 5.116918)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(17.325012, -23.5)
+scale = Vector2(1.2299999, 1.2399999)
+shape = SubResource("RectangleShape2D_qi2p4")
