@@ -35,5 +35,3 @@ unique_name_in_owner = true
 position = Vector2(17.325012, -23.5)
 scale = Vector2(1.2299999, 1.2399999)
 shape = SubResource("RectangleShape2D_qi2p4")
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

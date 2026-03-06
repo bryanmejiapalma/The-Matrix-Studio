@@ -39,8 +39,6 @@ theme_override_colors/font_outline_color = Color(0, 0.73971456, 1.1551381e-06, 1
 value = 100.0
 
 [node name="PointLight2D" parent="." instance=ExtResource("3_kne1u")]
-visible = false
-position = Vector2(-165, 77.99999)
 scale = Vector2(7.28125, 6.875)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -53,5 +51,14 @@ shape = SubResource("CircleShape2D_e80uo")
 
 [node name="HoldPosition" type="Marker2D" parent="."]
 position = Vector2(30, 32)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_top = 20.0
+offset_right = 194.0
+offset_bottom = 152.0
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
