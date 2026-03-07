@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 120.0        
 const CHASE_SPEED = 200.0  
-const STOP_DISTANCE = 35.0 
+const STOP_DISTANCE = 115.0 
 const DETECTION_RANGE = 400.0
 const DAMAGE_AMOUNT = 34 
 
@@ -50,6 +50,7 @@ func stun_enemy():
 	if is_stunned: return # Prevent double-triggering
 	is_stunned = true
 	modulate = Color.YELLOW 
+	print("stunned")
 	
 	await get_tree().create_timer(2.0).timeout
 	

@@ -46,9 +46,11 @@ position = Vector2(482, 152)
 position = Vector2(1036, 425)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Backgrounde\'" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -100
 scale = Vector2(2048, 2048)
