@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="3_kne1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
-radius = 35.128338
+radius = 35.1283
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
-radius = 32.140316
+radius = 32.1403
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(124, 89)
@@ -16,8 +16,8 @@ script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-4.9999924, 91)
-scale = Vector2(3.1150002, 3.04)
+position = Vector2(-4.99999, 91)
+scale = Vector2(3.115, 3.04)
 texture = ExtResource("2_kne1u")
 
 [node name="Timer" type="Timer" parent="."]
@@ -34,8 +34,8 @@ offset_left = -69.0
 offset_top = -88.0
 offset_right = 54.0
 offset_bottom = -61.0
-theme_override_colors/font_color = Color(0.81960785, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.73971456, 1.1551381e-06, 1)
+theme_override_colors/font_color = Color(0.819608, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.739715, 1.15514e-06, 1)
 value = 100.0
 
 [node name="PointLight2D" parent="." instance=ExtResource("3_kne1u")]
