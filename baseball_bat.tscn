@@ -7,6 +7,8 @@
 size = Vector2(78.76596, 607.74774)
 
 [node name="baseball bat" type="Area2D" groups=["pickable"]]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_b3ktl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["pickable"]]
@@ -14,6 +16,7 @@ scale = Vector2(0.3381294, 0.39799342)
 texture = ExtResource("1_spgei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(72.99999, -75.000015)
 rotation = 0.7704033
 scale = Vector2(0.3381294, 0.39799342)

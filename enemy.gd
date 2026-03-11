@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 120.0        
 const CHASE_SPEED = 200.0  
-const STOP_DISTANCE = 115.0 
+const STOP_DISTANCE = 128.0 
 const DETECTION_RANGE = 400.0
 const DAMAGE_AMOUNT = 34 
 
@@ -73,3 +73,23 @@ func patrol_behavior(delta):
 		wander_timer = 2.0
 	velocity = wander_direction * SPEED
 	rotation = velocity.angle()
+
+# This triggers when the player touches the enemy's hitbox
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	# Check for name OR group to be safe
+	if body.name == "Player" or body.is_in_group("players"):
+		target_player = body
+		
+		# Deal damage to the player
+		if body.has_method("take_damage"):
+			body.take_damage(DAMAGE_AMOUNT)
+		
+		# Trigger the stun on THIS enemy
+		stun_enemy()
+		print("Hit player! Enemy is now stunned.")
+
+# Add this to stop the chase if the player gets away!
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body == target_player:
+		target_player = null
+		print("Player escaped the hitbox.")

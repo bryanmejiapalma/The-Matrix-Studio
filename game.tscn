@@ -17,7 +17,7 @@ position = Vector2(178.99998, -22)
 scale = Vector2(3.9760523, 3.829717)
 
 [node name="Player" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(270, 312)
+position = Vector2(245, 325)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(119, -13)
@@ -40,7 +40,7 @@ rotation = -1.586398
 position = Vector2(830, 14)
 
 [node name="baseball bat" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(482, 152)
+position = Vector2(416, 325)
 
 [node name="enemy" parent="." instance=ExtResource("6_eow3j")]
 position = Vector2(1036, 425)

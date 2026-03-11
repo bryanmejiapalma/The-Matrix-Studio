@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var heal_amount = 20
+@export var heal_amount = 34
 
 func _on_body_entered(body):
 # Check if the thing that touched the apple is the Player
