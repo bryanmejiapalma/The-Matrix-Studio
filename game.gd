@@ -15,3 +15,8 @@ func respawn_player():
 	
 	# 4. Add the new player back into the world
 	get_tree().current_scene.add_child(new_player)
+# 4. Add the new player back into the world
+	get_tree().current_scene.add_child(new_player)
+
+func _on_resume_button_pressed() -> void:
+	pass # Replace with function body.

@@ -128,3 +128,7 @@ layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_mfdv2")
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
+
+[connection signal="pressed" from="PausedMenu/VBoxContainer/ResumeButton" to="PausedMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PausedMenu/VBoxContainer/RestartButton" to="PausedMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PausedMenu/VBoxContainer/QuitButton" to="PausedMenu" method="_on_quit_button_pressed"]
