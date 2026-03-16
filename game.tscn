@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8ki8gg6e5d6y"]
+[gd_scene load_steps=10 format=3 uid="uid://c8ki8gg6e5d6y"]
 
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bi8u7ifvx6tlt" path="res://game.gd" id="1_eow3j"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://de4kmcsnttwa0" path="res://enemy.tscn" id="6_eow3j"]
 [ext_resource type="PackedScene" uid="uid://tveac6mrpxec" path="res://baseball_bat.tscn" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="8_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://b3cxq6uhoyp4x" path="res://main.tscn" id="9_vef74"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_eow3j")
@@ -55,3 +56,5 @@ modulate = Color(0, 0, 0, 1)
 z_index = -100
 scale = Vector2(2048, 2048)
 texture = ExtResource("8_j5wjh")
+
+[node name="main" parent="." instance=ExtResource("9_vef74")]

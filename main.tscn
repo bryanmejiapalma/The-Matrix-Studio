@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3cxq6uhoyp4x"]
+
+[ext_resource type="Script" uid="uid://c15mouaw22jo2" path="res://inventory.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_h2yge"]
+
+[node name="main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0xm2m")
+
+[node name="Slots" type="HBoxContainer" parent="CanvasLayer/Inventory"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 539.0
+offset_right = 528.0
+offset_bottom = 639.0
+
+[node name="Slot1" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_h2yge")
+
+[node name="Slot2" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_h2yge")
+
+[node name="Slot3" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_h2yge")
+
+[node name="Slot4" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_h2yge")
+
+[node name="Slot5" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_h2yge")
