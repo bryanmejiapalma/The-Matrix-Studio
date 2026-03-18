@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var shape = $CollisionShape2D
 
+# Variables for state
 var is_held = false
 var player_in_range = null 
 var can_swing = true        
@@ -13,14 +14,14 @@ func _ready() -> void:
 	collision_mask = 1 # Initial: Look for Player
 
 func _process(_delta: float) -> void:
-	# Check for "E" press
+	# Check for Interact key
 	if Input.is_action_just_pressed("interact"):
 		if not is_held and player_in_range != null:
 			pick_up(player_in_range)
 		elif is_held:
 			drop_bat()
 	
-	# Swing logic: Left click
+	# Swing logic
 	if is_held and can_swing:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			swing()
@@ -39,33 +40,42 @@ func pick_up(player_node: Node2D) -> void:
 	is_held = true
 	player_in_range = null
 	
-	# Move from Ground to Player
-	get_parent().remove_child(self)
+	# --- UNIQUE NAME SPRITE LOGIC ---
+	# We find the inventory and hand over the texture from the %Unique Sprite
+	var inv = player_node.get_node_or_null("Inventory")
+	if inv:
+		# IMPORTANT: Change '%Sprite2D' to the exact unique name you gave it
+		if has_node("%Sprite2D"):
+			var bat_tex = %Sprite2D.texture 
+			inv.add_item(bat_tex) 
+	
+	# Move from World to Player's hand
+	if get_parent():
+		get_parent().remove_child(self)
 	player_node.add_child(self)
 	
-	position = Vector2(15, 0) # Adjust for hand position
+	position = Vector2(15, 0) # Position in hand
 	rotation_degrees = 0
 	collision_mask = 2 # Look for Enemies
 
 func drop_bat() -> void:
 	is_held = false
 	
-	# 1. Move from Player back to the Level
+	# --- CLEAR INVENTORY BOX ---
 	var player = get_parent()
+	if player and player.has_node("Inventory"):
+		player.get_node("Inventory").remove_item_by_name("baseball_bat")
+
+	# Move from Player back to the World
 	var level = get_tree().current_scene
-	
 	player.remove_child(self)
 	level.add_child(self)
 	
-	# 2. Place it at the player's feet
 	global_position = player.global_position + Vector2(0, 5)
-	
-	# 3. Reset masks and visibility
 	collision_mask = 1 # Look for Player again
 	shape.disabled = false
 	modulate.a = 1.0
 	can_swing = true
-	print("Bat dropped!")
 
 func swing() -> void:
 	can_swing = false
@@ -78,13 +88,12 @@ func swing() -> void:
 	await get_tree().create_timer(0.15).timeout
 	is_swinging = false  
 
-	# Penalty starts
+	# Attack cooldown visual/physics
 	shape.set_deferred("disabled", true)
 	modulate.a = 0.3 
 	
 	await get_tree().create_timer(4.0).timeout
 	
-	# Only reset if we are still holding it
 	if is_held:
 		shape.set_deferred("disabled", false)
 		modulate.a = 1.0 

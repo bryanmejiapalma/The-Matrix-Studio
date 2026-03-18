@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=7 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kne1u"]
@@ -9,6 +9,9 @@ size = Vector2(81, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e80uo"]
 radius = 29.48255
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kne1u"]
+radius = 38.013157
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(124, 89)
@@ -61,5 +64,12 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-5, -7)
+shape = SubResource("CircleShape2D_kne1u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
