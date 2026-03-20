@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Matrix_Studios"
-run/main_scene="uid://o6yxgp3jif0q"
+run/main_scene="uid://c8ki8gg6e5d6y"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

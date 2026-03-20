@@ -1,7 +1,7 @@
 extends Node
 
 # Preload your player scene so the manager can "spawn" it
-var player_scene = preload("res://Player.tscn") 
+var player_scene = preload("res://Player.tscn")
 
 func respawn_player():
 	# 1. Wait a moment so the death isn't instant

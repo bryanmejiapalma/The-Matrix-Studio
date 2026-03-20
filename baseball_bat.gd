@@ -42,12 +42,16 @@ func pick_up(player_node: Node2D) -> void:
 	
 	# --- UNIQUE NAME SPRITE LOGIC ---
 	# We find the inventory and hand over the texture from the %Unique Sprite
-	var inv = player_node.get_node_or_null("Inventory")
+	var inv = get_tree().current_scene.find_child("Inventory", true)
 	if inv:
 		# IMPORTANT: Change '%Sprite2D' to the exact unique name you gave it
-		if has_node("%Sprite2D"):
-			var bat_tex = %Sprite2D.texture 
-			inv.add_item(bat_tex) 
+		if has_node("%BatSprite2D"):
+			var bat_tex = %BatSprite2D.texture 
+			inv.add_item(bat_tex)
+		else:
+			print("no bat sprite found")
+	else:
+		print("no inventory found")
 	
 	# Move from World to Player's hand
 	if get_parent():
@@ -63,8 +67,9 @@ func drop_bat() -> void:
 	
 	# --- CLEAR INVENTORY BOX ---
 	var player = get_parent()
-	if player and player.has_node("Inventory"):
-		player.get_node("Inventory").remove_item_by_name("baseball_bat")
+	var inv = get_tree().current_scene.find_child("Inventory", true)
+	if player and inv:
+		inv.remove_item_by_name("baseball_bat")
 
 	# Move from Player back to the World
 	var level = get_tree().current_scene

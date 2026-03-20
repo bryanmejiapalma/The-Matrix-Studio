@@ -48,13 +48,15 @@ position = Vector2(416, 325)
 position = Vector2(1036, 425)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.2357319, 0.23573193, 0.2357319, 1)
 
 [node name="Backgrounde\'" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = -100
 scale = Vector2(2048, 2048)
 texture = ExtResource("8_j5wjh")
 
 [node name="main" parent="." instance=ExtResource("9_vef74")]
-position = Vector2(-9, 242)
+position = Vector2(-7, -128)

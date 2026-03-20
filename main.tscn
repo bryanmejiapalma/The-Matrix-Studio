@@ -1,59 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3cxq6uhoyp4x"]
+[gd_scene load_steps=3 format=3 uid="uid://b3cxq6uhoyp4x"]
 
 [ext_resource type="Script" uid="uid://c15mouaw22jo2" path="res://inventory.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="3_h2yge"]
 
 [node name="main" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Inventory" type="Control" parent="CanvasLayer"]
+[node name="Inventory" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Slots")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_0xm2m")
+Slots = [NodePath("Slots/Slot1/Sprite2D"), NodePath("Slots/Slot2/Sprite2D"), NodePath("Slots/Slot3/Sprite2D"), NodePath("Slots/Slot4/Sprite2D"), NodePath("Slots/Slot5/Sprite2D")]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Inventory"]
+[node name="Slots" type="HBoxContainer" parent="CanvasLayer/Inventory"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 5.0
-offset_top = 1192.0
-offset_right = 521.0
-offset_bottom = 1292.0
+offset_left = 8.0
+offset_top = 543.0
+offset_right = 524.0
+offset_bottom = 643.0
 
-[node name="DisplayBox" type="TextureRect" parent="CanvasLayer/Inventory/HBoxContainer"]
+[node name="Slot1" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
 
-[node name="BatImage" type="Sprite2D" parent="CanvasLayer/Inventory/HBoxContainer/DisplayBox"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Inventory/Slots/Slot1"]
 unique_name_in_owner = true
 position = Vector2(51, 51)
 scale = Vector2(0.640625, 0.6171875)
-texture = ExtResource("3_h2yge")
 
-[node name="Slot2" type="TextureRect" parent="CanvasLayer/Inventory/HBoxContainer"]
+[node name="Slot2" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
 
-[node name="Slot3" type="TextureRect" parent="CanvasLayer/Inventory/HBoxContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Inventory/Slots/Slot2"]
+position = Vector2(50, 50)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot3" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
 
-[node name="Slot4" type="TextureRect" parent="CanvasLayer/Inventory/HBoxContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Inventory/Slots/Slot3"]
+position = Vector2(50, 50)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot4" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
 
-[node name="Slot5" type="TextureRect" parent="CanvasLayer/Inventory/HBoxContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Inventory/Slots/Slot4"]
+position = Vector2(50, 50)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot5" type="TextureRect" parent="CanvasLayer/Inventory/Slots"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Inventory/Slots/Slot5"]
+position = Vector2(50, 0)
+scale = Vector2(0.6, 0.6)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(324, 539)

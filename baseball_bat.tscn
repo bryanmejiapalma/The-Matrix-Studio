@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://tveac6mrpxec"]
 
 [ext_resource type="Script" uid="uid://cfov5mddgkvf7" path="res://baseball_bat.gd" id="1_b3ktl"]
-[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="1_spgei"]
+[ext_resource type="Texture2D" uid="uid://tk812s6gc6oo" path="res://baseball_bat_image.svg" id="2_b3ktl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3ktl"]
 size = Vector2(78.76596, 607.74774)
@@ -11,10 +11,10 @@ collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_b3ktl")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BatSprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(0.3381294, 0.39799342)
-texture = ExtResource("1_spgei")
+texture = ExtResource("2_b3ktl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
