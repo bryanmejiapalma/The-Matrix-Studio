@@ -138,6 +138,7 @@ script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-4.9999924, 91)
 scale = Vector2(3.1150002, 3.04)
 texture = ExtResource("2_kne1u")
@@ -190,10 +191,9 @@ position = Vector2(-5, -7)
 shape = SubResource("CircleShape2D_kne1u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-25, -71.000015)
-scale = Vector2(4, 4)
+position = Vector2(-12, 86)
+scale = Vector2(3.1, 3.1)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
 animation = &"walk_left_right"
-frame_progress = 0.8892623
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,16 +11,16 @@ var max_health = 100
 var can_take_damage: bool = true 
 var held_item = null 
 
-# --- NEW: STAMINA VARIABLE ---
+# --- STAMINA ---
 var sprint_stamina: float = SPRINT_TIME_MAX 
 
-@onready var sprite_2d: Sprite2D = $Sprite2D 
+@onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_bar = $ProgressBar
 @onready var pickup_zone = $PickupZone 
 @onready var hold_position = $HoldPosition 
 
 func _ready():
-	health = max_health # Start at 100
+	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
 
@@ -34,23 +34,58 @@ func _physics_process(delta: float) -> void:
 	var vertical_input := Input.get_axis("ui_up", "ui_down")
 	var horizontal_input := Input.get_axis("ui_left", "ui_right")
 
-	# --- UPDATED SPRINT LOGsIC ---
+	# --- SPRINT LOGIC ---
 	var current_speed = WALK_SPEED
 	
-	# Check if boost is pressed AND we have stamina left
 	if Input.is_action_pressed("boost") and sprint_stamina > 0:
 		current_speed = BOOST_SPEED
-		sprint_stamina -= delta # Drain stamina over time
+		sprint_stamina -= delta
 	else:
-		# Refill stamina slowly when not sprinting
 		sprint_stamina = move_toward(sprint_stamina, SPRINT_TIME_MAX, delta * 0.5)
 
-	velocity.x = horizontal_input * current_speed
-	velocity.y = vertical_input * current_speed
+	# --- NORMALIZED MOVEMENT (prevents faster diagonal speed) ---
+	var input_vector = Vector2(horizontal_input, vertical_input).normalized()
+	velocity = input_vector * current_speed
 
 	move_and_slide()
 
-# --- THE DAMAGE SYSTEM ---
+	# --- ANIMATION CALL ---
+	update_animation(horizontal_input, vertical_input)
+
+# --- ANIMATION SYSTEM ---
+func update_animation(h_input: float, v_input: float):
+	if is_dead:
+		if sprite_2d.animation != "default":
+			sprite_2d.play("default")
+		return
+
+	var is_moving = h_input != 0 or v_input != 0
+	var is_sprinting = Input.is_action_pressed("boost") and sprint_stamina > 0
+
+	if is_moving:
+		# Speed up animation if sprinting
+		sprite_2d.speed_scale = 1.5 if is_sprinting else 1.0
+
+		# Direction priority (vertical over horizontal)
+		if abs(v_input) > abs(h_input):
+			if v_input < 0:
+				if sprite_2d.animation != "walk_up":
+					sprite_2d.play("walk_up")
+			else:
+				if sprite_2d.animation != "walk_down":
+					sprite_2d.play("walk_down")
+		else:
+			if sprite_2d.animation != "walk_left_right":
+				sprite_2d.play("walk_left_right")
+			
+			# Flip sprite for left/right
+			sprite_2d.flip_h = h_input < 0
+	else:
+		sprite_2d.speed_scale = 1.0
+		if sprite_2d.animation != "default":
+			sprite_2d.play("default")
+
+# --- DAMAGE SYSTEM ---
 func take_damage(amount: int):
 	if is_dead or not can_take_damage: return
 	
@@ -77,15 +112,16 @@ func die():
 	rotation_degrees = 90
 	print("Player is down!")
 
-	# --- RESPAWN LOGIC ---
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
 # --- PICKUP LOGIC ---
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
-		if held_item: drop_item()
-		else: pick_up_item()
+		if held_item:
+			drop_item()
+		else:
+			pick_up_item()
 
 func pick_up_item():
 	var areas = pickup_zone.get_overlapping_areas()
