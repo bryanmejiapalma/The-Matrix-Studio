@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	var vertical_input := Input.get_axis("ui_up", "ui_down")
 	var horizontal_input := Input.get_axis("ui_left", "ui_right")
 
-	# --- UPDATED SPRINT LOGIC ---
+	# --- UPDATED SPRINT LOGsIC ---
 	var current_speed = WALK_SPEED
 	
 	# Check if boost is pressed AND we have stamina left

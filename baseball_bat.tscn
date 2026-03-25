@@ -1,10 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://tveac6mrpxec"]
+[gd_scene load_steps=9 format=3 uid="uid://tveac6mrpxec"]
 
 [ext_resource type="Script" uid="uid://cfov5mddgkvf7" path="res://baseball_bat.gd" id="1_b3ktl"]
-[ext_resource type="Texture2D" uid="uid://tk812s6gc6oo" path="res://baseball_bat_image.svg" id="2_b3ktl"]
+[ext_resource type="Texture2D" uid="uid://dcfrxsj0g2my2" path="res://bat-Sheet.png" id="2_b3ktl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3ktl"]
 size = Vector2(78.76596, 607.74774)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsksd"]
+atlas = ExtResource("2_b3ktl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipc8w"]
+atlas = ExtResource("2_b3ktl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mosod"]
+atlas = ExtResource("2_b3ktl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pv8v"]
+atlas = ExtResource("2_b3ktl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2d28b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsksd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipc8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mosod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pv8v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="baseball bat" type="Area2D"]
 collision_layer = 6
@@ -14,7 +50,6 @@ script = ExtResource("1_b3ktl")
 [node name="BatSprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(0.3381294, 0.39799342)
-texture = ExtResource("2_b3ktl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
@@ -22,3 +57,6 @@ position = Vector2(72.99999, -75.000015)
 rotation = 0.7704033
 scale = Vector2(0.3381294, 0.39799342)
 shape = SubResource("RectangleShape2D_b3ktl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2d28b")
