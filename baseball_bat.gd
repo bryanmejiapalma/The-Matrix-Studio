@@ -69,7 +69,7 @@ func drop_bat() -> void:
 	var player = get_parent()
 	var inv = get_tree().current_scene.find_child("Inventory", true)
 	if player and inv:
-		inv.remove_item_by_name("baseball_bat")
+		inv.remove_item_by_name("bat-export")
 
 	# Move from Player back to the World
 	var level = get_tree().current_scene
