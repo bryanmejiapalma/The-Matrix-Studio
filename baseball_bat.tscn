@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://tveac6mrpxec"]
+[gd_scene load_steps=10 format=3 uid="uid://tveac6mrpxec"]
 
 [ext_resource type="Script" uid="uid://cfov5mddgkvf7" path="res://baseball_bat.gd" id="1_b3ktl"]
 [ext_resource type="Texture2D" uid="uid://dcfrxsj0g2my2" path="res://bat-Sheet.png" id="2_b3ktl"]
+[ext_resource type="Texture2D" uid="uid://daxfim1kpsutw" path="res://bat-export.png" id="2_xsksd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3ktl"]
-size = Vector2(78.76596, 607.74774)
+size = Vector2(78.76596, 239.92056)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xsksd"]
 atlas = ExtResource("2_b3ktl")
@@ -49,14 +50,18 @@ script = ExtResource("1_b3ktl")
 
 [node name="BatSprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.3381294, 0.39799342)
+position = Vector2(33.794968, -35.316055)
+scale = Vector2(2.4503148, 2.6052468)
+texture = ExtResource("2_xsksd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(72.99999, -75.000015)
+position = Vector2(22.024214, -22.472095)
 rotation = 0.7704033
 scale = Vector2(0.3381294, 0.39799342)
 shape = SubResource("RectangleShape2D_b3ktl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, -31.5)
+scale = Vector2(2.8125, 2.96875)
 sprite_frames = SubResource("SpriteFrames_2d28b")
