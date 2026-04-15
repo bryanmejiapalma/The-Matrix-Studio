@@ -174,7 +174,7 @@ scale = Vector2(1.3570362, -1.6099843)
 shape = SubResource("CircleShape2D_e80uo")
 
 [node name="HoldPosition" type="Marker2D" parent="."]
-position = Vector2(27, 38)
+position = Vector2(17, 33)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 offset_top = 20.0
