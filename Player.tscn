@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://o6yxgp3jif0q"]
+[gd_scene load_steps=26 format=3 uid="uid://o6yxgp3jif0q"]
 
 [ext_resource type="Script" uid="uid://caku1i4c3k7ue" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_kne1u"]
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="3_kne1u"]
+[ext_resource type="Script" uid="uid://dacxcotrx18lh" path="res://camera_2d.gd" id="4_5ncpa"]
 [ext_resource type="Texture2D" uid="uid://l8x57r8e7r5w" path="res://playerupNdown-Sheet.png" id="4_dtqjt"]
 [ext_resource type="Texture2D" uid="uid://g50imq46tvsh" path="res://sidewalking-Sheet.png" id="4_e80uo"]
 [ext_resource type="Texture2D" uid="uid://kkyg42k5res0" path="res://Sprite-0002-Sheet 2.png" id="4_tdg3f"]
@@ -165,6 +166,7 @@ value = 100.0
 scale = Vector2(7.28125, 6.875)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("4_5ncpa")
 
 [node name="PickupZone" type="Area2D" parent="."]
 

@@ -93,6 +93,11 @@ func take_damage(amount: int):
 	health_bar.value = health
 	print("Player Health: ", health)
 	
+	# --- SCREEN SHAKE TRIGGER ---
+	# Checks if the Camera2D exists as a child and calls its shake function
+	if has_node("Camera2D"):
+		$Camera2D.apply_shake(15.0)
+	
 	if health <= 0:
 		die()
 	else:
@@ -109,6 +114,8 @@ func die():
 	if is_dead: return
 	
 	is_dead = true
+	# Note: Ensure Camera2D has "Ignore Rotation" enabled in Inspector 
+	# so the whole screen doesn't rotate with the player!
 	rotation_degrees = 90
 	print("Player is down!")
 
