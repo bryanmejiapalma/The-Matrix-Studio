@@ -5,6 +5,8 @@
 
 [node name="Raton" type="CharacterBody2D"]
 script = ExtResource("1_115ut")
+walk_speed = 100
+detection_range = 600
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(537.5, 344.75)
