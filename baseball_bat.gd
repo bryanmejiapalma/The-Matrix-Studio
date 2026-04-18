@@ -21,6 +21,11 @@ func _process(_delta: float) -> void:
 		elif is_held:
 			drop_bat()
 	
+	# --- MOUSE TRACKING ---
+	# Only rotate to follow mouse if held and not currently in the middle of a swing animation
+	if is_held and not is_swinging:
+		look_at(get_global_mouse_position())
+	
 	# Swing logic
 	if is_held and can_swing:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -29,6 +34,7 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if not is_held and body.name == "Player":
 		player_in_range = body
+	# Only hit enemies if we are actually swinging
 	elif is_held and is_swinging and body.has_method("stun_enemy"):
 		body.stun_enemy()
 
@@ -40,32 +46,33 @@ func pick_up(player_node: Node2D) -> void:
 	is_held = true
 	player_in_range = null
 	
-	# --- UNIQUE NAME SPRITE LOGIC ---
-	# We find the inventory and hand over the texture from the %Unique Sprite
+	# --- INVENTORY LOGIC ---
 	var inv = get_tree().current_scene.find_child("Inventory", true)
 	if inv:
-		# IMPORTANT: Change '%Sprite2D' to the exact unique name you gave it
 		if has_node("%BatSprite2D"):
 			var bat_tex = %BatSprite2D.texture 
 			inv.add_item(bat_tex)
 		else:
 			print("no bat sprite found")
-	else:
-		print("no inventory found")
 	
-	# Move from World to Player's hand
+	# Move from World to Player's HoldPosition
 	if get_parent():
 		get_parent().remove_child(self)
-	player_node.add_child(self)
 	
-	position = Vector2(15, 0) # Position in hand
-	rotation_degrees = 0
-	collision_mask = 2 # Look for Enemies
+	# Try to find the HoldPosition marker specifically, otherwise just attach to player
+	var hold_pos = player_node.find_child("HoldPosition")
+	if hold_pos:
+		hold_pos.add_child(self)
+	else:
+		player_node.add_child(self)
+	
+	position = Vector2.ZERO # Center it on the hand/marker
+	collision_mask = 2 # Look for Enemies (Layer 2)
 
 func drop_bat() -> void:
 	is_held = false
 	
-	# --- CLEAR INVENTORY BOX ---
+	# --- CLEAR INVENTORY ---
 	var player = get_parent()
 	var inv = get_tree().current_scene.find_child("Inventory", true)
 	if player and inv:
@@ -73,10 +80,12 @@ func drop_bat() -> void:
 
 	# Move from Player back to the World
 	var level = get_tree().current_scene
-	player.remove_child(self)
+	if get_parent():
+		get_parent().remove_child(self)
 	level.add_child(self)
 	
 	global_position = player.global_position + Vector2(0, 5)
+	rotation_degrees = 0 # Reset rotation when on ground
 	collision_mask = 1 # Look for Player again
 	shape.disabled = false
 	modulate.a = 1.0
@@ -86,18 +95,26 @@ func swing() -> void:
 	can_swing = false
 	is_swinging = true
 	
+	# 1. Capture where we are pointing at the start of the click
+	var start_rot = rotation_degrees
+	var end_rot = start_rot + 90 # The "hit" arc
+	
 	var tween = create_tween()
-	tween.tween_property(self, "rotation_degrees", 90, 0.1)
-	tween.tween_property(self, "rotation_degrees", 0, 0.1)
+	# Fast swing forward
+	tween.tween_property(self, "rotation_degrees", end_rot, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# Smooth return to original mouse direction
+	tween.tween_property(self, "rotation_degrees", start_rot, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
+	# Give a tiny window where 'is_swinging' is true so collision registers
 	await get_tree().create_timer(0.15).timeout
 	is_swinging = false  
 
-	# Attack cooldown visual/physics
+	# Attack cooldown visuals
 	shape.set_deferred("disabled", true)
 	modulate.a = 0.3 
 	
-	await get_tree().create_timer(4.0).timeout
+	# Re-enable after cooldown (Changed to 1.0s for better feel, change to 4.0s if desired)
+	await get_tree().create_timer(1.0).timeout
 	
 	if is_held:
 		shape.set_deferred("disabled", false)

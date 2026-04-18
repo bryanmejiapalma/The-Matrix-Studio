@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://tveac6mrpxec" path="res://baseball_bat.tscn" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://b3cxq6uhoyp4x" path="res://main.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" path="res://raton.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_mfdv2"]
 
 [node name="Game" type="Node2D"]
