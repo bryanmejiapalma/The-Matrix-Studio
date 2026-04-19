@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5vw17gpfij0w"]
+
+[ext_resource type="Script" uid="uid://b0bnpalr3vcbs" path="res://locker.gd" id="1_hcspt"]
+[ext_resource type="Texture2D" uid="uid://bw74mnj1pv085" path="res://the real locker for the game.png" id="2_a13x5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dpg0"]
+size = Vector2(20, 34)
+
+[node name="Locker" type="Area2D"]
+process_mode = 3
+z_index = 1
+scale = Vector2(2.0112472, 1.833715)
+script = ExtResource("1_hcspt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -31)
+scale = Vector2(2.004683, 1.9818755)
+texture = ExtResource("2_a13x5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -31)
+scale = Vector2(2.004683, 1.9818755)
+shape = SubResource("RectangleShape2D_7dpg0")

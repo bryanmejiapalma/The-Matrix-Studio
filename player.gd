@@ -6,6 +6,7 @@ const BOOST_SPEED = 600
 const SPRINT_TIME_MAX = 2.5  # Max sprint duration in seconds
 
 var is_dead: bool = false
+var is_hidden: bool = false # Managed by the Locker script
 var health = 100
 var max_health = 100
 var can_take_damage: bool = true 
@@ -23,6 +24,8 @@ func _ready():
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
+	# The "player" group is how the locker finds this node
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return 
@@ -31,6 +34,7 @@ func _physics_process(delta: float) -> void:
 	if global_position.y > 1000: 
 		die()
 
+	# Movement inputs
 	var vertical_input := Input.get_axis("ui_up", "ui_down")
 	var horizontal_input := Input.get_axis("ui_left", "ui_right")
 
@@ -43,13 +47,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprint_stamina = move_toward(sprint_stamina, SPRINT_TIME_MAX, delta * 0.5)
 
-	# --- NORMALIZED MOVEMENT (prevents faster diagonal speed) ---
+	# --- MOVEMENT CALCULATION ---
 	var input_vector = Vector2(horizontal_input, vertical_input).normalized()
 	velocity = input_vector * current_speed
 
 	move_and_slide()
 
-	# --- ANIMATION CALL ---
+	# Update animations based on movement
 	update_animation(horizontal_input, vertical_input)
 
 # --- ANIMATION SYSTEM ---
@@ -63,10 +67,8 @@ func update_animation(h_input: float, v_input: float):
 	var is_sprinting = Input.is_action_pressed("boost") and sprint_stamina > 0
 
 	if is_moving:
-		# Speed up animation if sprinting
 		sprite_2d.speed_scale = 1.5 if is_sprinting else 1.0
 
-		# Direction priority (vertical over horizontal)
 		if abs(v_input) > abs(h_input):
 			if v_input < 0:
 				if sprite_2d.animation != "walk_up":
@@ -77,8 +79,6 @@ func update_animation(h_input: float, v_input: float):
 		else:
 			if sprite_2d.animation != "walk_left_right":
 				sprite_2d.play("walk_left_right")
-			
-			# Flip sprite for left/right
 			sprite_2d.flip_h = h_input < 0
 	else:
 		sprite_2d.speed_scale = 1.0
@@ -87,14 +87,13 @@ func update_animation(h_input: float, v_input: float):
 
 # --- DAMAGE SYSTEM ---
 func take_damage(amount: int):
-	if is_dead or not can_take_damage: return
+	# If player is dead, invincible, or HIDDEN, ignore damage
+	if is_dead or not can_take_damage or is_hidden: return
 	
 	health -= amount
 	health_bar.value = health
-	print("Player Health: ", health)
 	
-	# --- SCREEN SHAKE TRIGGER ---
-	# Checks if the Camera2D exists as a child and calls its shake function
+	# Camera Shake
 	if has_node("Camera2D"):
 		$Camera2D.apply_shake(15.0)
 	
@@ -112,24 +111,23 @@ func trigger_invincibility():
 
 func die():
 	if is_dead: return
-	
 	is_dead = true
-	# Note: Ensure Camera2D has "Ignore Rotation" enabled in Inspector 
-	# so the whole screen doesn't rotate with the player!
-	rotation_degrees = 90
-	print("Player is down!")
-
+	rotation_degrees = 90 # Fall over
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
-# --- PICKUP LOGIC ---
+# --- INPUT HANDLING ---
 func _input(_event):
+	# If we are hidden in a locker, don't allow picking up/dropping items
+	if is_hidden: return
+
 	if Input.is_action_just_pressed("interact"):
 		if held_item:
 			drop_item()
 		else:
 			pick_up_item()
 
+# --- PICKUP LOGIC ---
 func pick_up_item():
 	var areas = pickup_zone.get_overlapping_areas()
 	for area in areas:

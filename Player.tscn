@@ -133,7 +133,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-z_index = 1
+z_index = 2
 position = Vector2(124, 89)
 script = ExtResource("1_kpjcp")
 
