@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://de4kmcsnttwa0"]
+[gd_scene load_steps=7 format=3 uid="uid://de4kmcsnttwa0"]
 
 [ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="4_epg4t"]
 [ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="4_iifgy"]
+[ext_resource type="Texture2D" uid="uid://b76ab2iijn7dx" path="res://enemy exclamation.png" id="5_epg4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(99.715454, 95.967766)
@@ -41,6 +42,18 @@ shape = SubResource("RectangleShape2D_qi2p4")
 [node name="PointLight2D" parent="." instance=ExtResource("4_epg4t")]
 position = Vector2(18.000011, -15.499996)
 scale = Vector2(7.7500005, 6.96875)
+
+[node name="AlertIcon" type="Sprite2D" parent="."]
+position = Vector2(21, -151)
+scale = Vector2(1.65625, 2.3125)
+texture = ExtResource("5_epg4t")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+top_level = true
+offset_right = 81.0
+offset_bottom = 23.0
+text = "! I see you!"
 
 [connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="child_exiting_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_exiting_tree"]
