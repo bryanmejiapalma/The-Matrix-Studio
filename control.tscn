@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuhjig0etxmnd"]
+[gd_scene load_steps=7 format=3 uid="uid://cuhjig0etxmnd"]
 
 [ext_resource type="Shader" uid="uid://dw0r7fbp38bnx" path="res://control.gdshader" id="1_0fbet"]
 [ext_resource type="Theme" uid="uid://bx5ubw3h3ef5f" path="res://main_theme.tres" id="1_ee4bf"]
 [ext_resource type="Texture2D" uid="uid://datblw6l7qxr" path="res://Sprite-0002.png" id="2_62e2m"]
+[ext_resource type="Script" uid="uid://dtci2d8b2s20d" path="res://UI.gd" id="2_kbped"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="3_qtu10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_62e2m"]
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ee4bf")
+script = ExtResource("2_kbped")
 
 [node name="background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_62e2m")
@@ -28,11 +30,14 @@ grow_vertical = 2
 color = Color(0.5261938, 0.1332756, 0.04510793, 1)
 
 [node name="body" type="TextureRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = -248.0
-offset_top = 158.0
+offset_top = -490.0
 offset_right = 704.0
-offset_bottom = 1354.0
+offset_bottom = 706.0
 texture = ExtResource("2_62e2m")
 expand_mode = 1
 stretch_mode = 5
@@ -47,33 +52,30 @@ fit_content = true
 
 [node name="enemy" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 997.0
-offset_top = -357.0
-offset_right = 1354.0
-offset_bottom = -19.0
+offset_left = -406.0
+offset_top = -371.0
+offset_right = -49.0
+offset_bottom = -33.0
+grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_qtu10")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="enemy"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -2.786
-anchor_top = -0.85600007
-anchor_right = 0.432
-anchor_bottom = 1.065
-offset_left = 732.602
-offset_top = 289.32803
-offset_right = -114.224
-offset_bottom = -319.97003
+anchor_left = -0.54700005
+anchor_top = 0.39600003
+anchor_right = -0.54700005
+anchor_bottom = 0.39600003
+offset_left = -66.72098
+offset_top = -133.848
+offset_right = 235.27902
+offset_bottom = -93.84801
 text = "you've behave really bad lately
 "
 fit_content = true
-
-[node name="NextButton" type="Button" parent="."]
-layout_mode = 1
-offset_right = 136.0
-offset_bottom = 66.0
-text = "next"
