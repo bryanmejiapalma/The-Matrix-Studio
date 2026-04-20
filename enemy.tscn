@@ -44,6 +44,8 @@ position = Vector2(18.000011, -15.499996)
 scale = Vector2(7.7500005, 6.96875)
 
 [node name="AlertIcon" type="Sprite2D" parent="."]
+process_mode = 3
+visible = false
 position = Vector2(21, -151)
 scale = Vector2(1.65625, 2.3125)
 texture = ExtResource("5_epg4t")

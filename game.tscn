@@ -71,3 +71,8 @@ position = Vector2(1044, 63)
 
 [node name="Locker" parent="." instance=ExtResource("12_iotsf")]
 position = Vector2(521, 102)
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
