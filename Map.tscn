@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://kc4sadhfsu7x" path="res://mapp-export.png" id="2_3vi7k"]
 
 [node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_3vi7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(154.37495, 103.99999)
-scale = Vector2(2.2117186, 1.3109374)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_3vi7k")
 
 [node name="TileMap" type="TileMap" parent="."]

@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	if is_dead: return 
 
 	# --- FALL OFF MAP CHECK ---
-	if global_position.y > 1000: 
+	if global_position.y > 100000000000000000: 
 		die()
 
 	# Movement inputs
