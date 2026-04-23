@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://de4kmcsnttwa0"]
+[gd_scene load_steps=9 format=3 uid="uid://de4kmcsnttwa0"]
 
 [ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="4_epg4t"]
 [ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://b76ab2iijn7dx" path="res://enemy exclamation.png" id="5_epg4t"]
+[ext_resource type="AudioStream" uid="uid://el2mugl02na8" path="res://heartbeat-deceleration-the-foundation-fast-to-slow-2-00-24.mp3" id="6_3yqyl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(99.715454, 95.967766)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epg4t"]
+radius = 2265.683
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(310, 276)
@@ -56,6 +60,17 @@ top_level = true
 offset_right = 81.0
 offset_bottom = 23.0
 text = "! I see you!"
+
+[node name="WarningZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningZone"]
+position = Vector2(17, -22)
+shape = SubResource("CircleShape2D_epg4t")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3yqyl")
+volume_db = 10.0
+parameters/looping = true
 
 [connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
 [connection signal="child_exiting_tree" from="CollisionShape2D" to="." method="_on_collision_shape_2d_child_exiting_tree"]

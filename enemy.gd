@@ -5,6 +5,7 @@ const SPEED = 120.0
 const CHASE_SPEED = 200.0  
 const STOP_DISTANCE = 128.0 
 const DETECTION_RANGE = 400.0
+const WARNING_RANGE = 600.0 # Range where heartbeat/vignette starts
 const DAMAGE_AMOUNT = 34 
 
 var target_player = null
@@ -14,7 +15,9 @@ var is_stunned: bool = false
 var is_alert_active: bool = false 
 
 @onready var alert_label = $Label 
+@onready var heartbeat_audio = $AudioStreamPlayer2D # Make sure this node exists on the Enemy!
 
+# 2. _ready runs once when the enemy spawns
 func _ready():
 	target_player = get_tree().get_first_node_in_group("player")
 	
@@ -23,7 +26,11 @@ func _ready():
 	
 	if alert_label:
 		alert_label.visible = false
+	
+	if heartbeat_audio:
+		heartbeat_audio.play() # Start the loop (it will be silent due to volume logic)
 
+# 3. _physics_process runs every frame
 func _physics_process(delta: float) -> void:
 	if is_stunned:
 		velocity = Vector2.ZERO
@@ -31,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	check_for_player()
+	handle_proximity_warning() # Controls the intensity of sound/vignette
 
 	# Check if player exists and isn't hiding
 	if target_player and "is_dead" in target_player and not target_player.is_dead and not target_player.is_hidden:
@@ -53,9 +61,33 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
-	# Update label position only (Rotation is now handled by 'Top Level' in Editor)
+	# Update label position (Ensure 'Top Level' is ON for the Label in the Editor)
 	if alert_label and alert_label.visible:
 		alert_label.global_position = global_position + Vector2(-60, -80)
+
+# 4. Custom functions
+func handle_proximity_warning():
+	var player = get_tree().get_first_node_in_group("player")
+	if player and "is_dead" in player and not player.is_dead:
+		var dist = global_position.distance_to(player.global_position)
+		
+		if dist < WARNING_RANGE:
+			# intensity: 0.0 at far edge, 1.0 when touching
+			var intensity = clamp(1.0 - (dist / WARNING_RANGE), 0.0, 1.0)
+			
+			# 1. Update Audio Volume (Lerp between silent -40dB and loud 0dB)
+			if heartbeat_audio:
+				heartbeat_audio.volume_db = lerp(-40.0, 0.0, intensity)
+			
+			# 2. Update Screen Redness (Looks for the node in your Player scene)
+			var vignette = player.get_node_or_null("CanvasLayer/BloodVignette")
+			if vignette:
+				vignette.modulate.a = intensity * 0.6 # Cap at 60% opacity
+		else:
+			# Reset if out of range
+			if heartbeat_audio: heartbeat_audio.volume_db = -80.0
+			var vignette = player.get_node_or_null("CanvasLayer/BloodVignette")
+			if vignette: vignette.modulate.a = 0.0
 
 func stun_enemy():
 	if is_stunned: return 
@@ -86,7 +118,6 @@ func show_alert_popup():
 	alert_label.text = "! I see you!"
 	alert_label.visible = true
 	
-	# Pop animation
 	alert_label.scale = Vector2(0, 0)
 	var tween = create_tween()
 	tween.tween_property(alert_label, "scale", Vector2(1, 1), 0.1).set_trans(Tween.TRANS_BACK)

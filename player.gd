@@ -3,10 +3,10 @@ class_name Player
 
 const WALK_SPEED = 300
 const BOOST_SPEED = 600
-const SPRINT_TIME_MAX = 2.5  # Max sprint duration in seconds
+const SPRINT_TIME_MAX = 2.5 
 
 var is_dead: bool = false
-var is_hidden: bool = false # Managed by the Locker script
+var is_hidden: bool = false 
 var health = 100
 var max_health = 100
 var can_take_damage: bool = true 
@@ -20,40 +20,50 @@ var sprint_stamina: float = SPRINT_TIME_MAX
 @onready var pickup_zone = $PickupZone 
 @onready var hold_position = $HoldPosition 
 
+# Optional: If you add a ProgressBar for stamina, name it StaminaBar
+@onready var stamina_bar = get_node_or_null("StaminaBar") 
+
 func _ready():
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
-	# The "player" group is how the locker finds this node
+	
+	if stamina_bar:
+		stamina_bar.max_value = SPRINT_TIME_MAX
+		stamina_bar.value = SPRINT_TIME_MAX
+		
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return 
 
-	# --- FALL OFF MAP CHECK ---
-	if global_position.y > 100000000000000000: 
-		die()
-
-	# Movement inputs
+	# --- MOVEMENT INPUTS ---
 	var vertical_input := Input.get_axis("ui_up", "ui_down")
 	var horizontal_input := Input.get_axis("ui_left", "ui_right")
 
 	# --- SPRINT LOGIC ---
 	var current_speed = WALK_SPEED
 	
-	if Input.is_action_pressed("boost") and sprint_stamina > 0:
+	if Input.is_action_pressed("boost") and sprint_stamina > 0 and (horizontal_input != 0 or vertical_input != 0):
 		current_speed = BOOST_SPEED
 		sprint_stamina -= delta
 	else:
 		sprint_stamina = move_toward(sprint_stamina, SPRINT_TIME_MAX, delta * 0.5)
 
+	# Update stamina UI if it exists
+	if stamina_bar:
+		stamina_bar.value = sprint_stamina
+
 	# --- MOVEMENT CALCULATION ---
 	var input_vector = Vector2(horizontal_input, vertical_input).normalized()
-	velocity = input_vector * current_speed
+	
+	# If hidden, don't move
+	if is_hidden:
+		velocity = Vector2.ZERO
+	else:
+		velocity = input_vector * current_speed
 
 	move_and_slide()
-
-	# Update animations based on movement
 	update_animation(horizontal_input, vertical_input)
 
 # --- ANIMATION SYSTEM ---
@@ -66,7 +76,7 @@ func update_animation(h_input: float, v_input: float):
 	var is_moving = h_input != 0 or v_input != 0
 	var is_sprinting = Input.is_action_pressed("boost") and sprint_stamina > 0
 
-	if is_moving:
+	if is_moving and not is_hidden:
 		sprite_2d.speed_scale = 1.5 if is_sprinting else 1.0
 
 		if abs(v_input) > abs(h_input):
@@ -87,13 +97,11 @@ func update_animation(h_input: float, v_input: float):
 
 # --- DAMAGE SYSTEM ---
 func take_damage(amount: int):
-	# If player is dead, invincible, or HIDDEN, ignore damage
 	if is_dead or not can_take_damage or is_hidden: return
 	
 	health -= amount
 	health_bar.value = health
 	
-	# Camera Shake
 	if has_node("Camera2D"):
 		$Camera2D.apply_shake(15.0)
 	
@@ -104,7 +112,7 @@ func take_damage(amount: int):
 
 func trigger_invincibility():
 	can_take_damage = false
-	modulate = Color.RED 
+	modulate = Color(1, 0.5, 0.5, 1) # Flashes red-ish
 	await get_tree().create_timer(1.0).timeout 
 	modulate = Color.WHITE
 	can_take_damage = true
@@ -112,14 +120,18 @@ func trigger_invincibility():
 func die():
 	if is_dead: return
 	is_dead = true
-	rotation_degrees = 90 # Fall over
+	
+	# Make sure red vignette disappears when you die
+	var vignette = get_node_or_null("CanvasLayer/BloodVignette")
+	if vignette: vignette.modulate.a = 0
+	
+	rotation_degrees = 90
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
 # --- INPUT HANDLING ---
 func _input(_event):
-	# If we are hidden in a locker, don't allow picking up/dropping items
-	if is_hidden: return
+	if is_hidden or is_dead: return
 
 	if Input.is_action_just_pressed("interact"):
 		if held_item:
@@ -133,6 +145,7 @@ func pick_up_item():
 	for area in areas:
 		if area.is_in_group("pickable"):
 			held_item = area
+			# Simple way to attach item to player
 			held_item.get_parent().remove_child(held_item)
 			hold_position.add_child(held_item)
 			held_item.position = Vector2.ZERO

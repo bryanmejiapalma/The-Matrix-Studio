@@ -198,4 +198,15 @@ scale = Vector2(3.1, 3.1)
 sprite_frames = SubResource("SpriteFrames_wi0c6")
 animation = &"walk_left_right"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BloodVignette" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
