@@ -1,17 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://2voi264ic4d4"]
+[gd_scene load_steps=4 format=3 uid="uid://durk2r5ymk65h"]
 
-[ext_resource type="Script" uid="uid://c4o15dsn3tf7t" path="res://map.gd" id="1_3vi7k"]
-[ext_resource type="Texture2D" uid="uid://kc4sadhfsu7x" path="res://mapp-export.png" id="2_3vi7k"]
-[ext_resource type="Texture2D" uid="uid://c4i5fta8gsn7f" path="res://tiles-export copy.png" id="3_3h1ab"]
-[ext_resource type="PackedScene" uid="uid://d3odehxyxxp2n" path="res://static_body_2d.tscn" id="4_7if1s"]
-[ext_resource type="PackedScene" uid="uid://ddnf1fo74tfpu" path="res://doors.tscn" id="5_v6avs"]
-[ext_resource type="PackedScene" uid="uid://bloy8tl5n1v8a" path="res://green_wall.tscn" id="6_8qak7"]
-[ext_resource type="PackedScene" uid="uid://durk2r5ymk65h" path="res://top_door.tscn" id="7_0f2yp"]
-[ext_resource type="PackedScene" uid="uid://dviyf2hkw2rk6" path="res://red_wall.tscn" id="8_vm4q1"]
-[ext_resource type="PackedScene" uid="uid://do6lyteiagejo" path="res://metal_top_door.tscn" id="9_ud676"]
+[ext_resource type="Texture2D" uid="uid://4gv0h852cjrn" path="res://tiles-export.png" id="1_p4jwt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7if1s"]
-texture = ExtResource("3_3h1ab")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eiae4"]
+texture = ExtResource("1_p4jwt")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -96,6 +88,7 @@ texture = ExtResource("3_3h1ab")
 28:3/0 = 0
 29:3/0 = 0
 30:3/0 = 0
+31:3/0 = 0
 32:3/0 = 0
 33:3/0 = 0
 34:3/0 = 0
@@ -1783,141 +1776,14 @@ texture = ExtResource("3_3h1ab")
 38:61/0 = 0
 39:61/0 = 0
 40:61/0 = 0
-31:3/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_v6avs"]
-sources/0 = SubResource("TileSetAtlasSource_7if1s")
+[sub_resource type="TileSet" id="TileSet_mohpx"]
+sources/0 = SubResource("TileSetAtlasSource_eiae4")
 
-[node name="StaticBody2D" type="StaticBody2D"]
-z_index = 1
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_3vi7k")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(154.37495, 103.99999)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_3vi7k")
+[node name="top door" type="StaticBody2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_v6avs")
+position = Vector2(-2, 0)
+tile_set = SubResource("TileSet_mohpx")
 format = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, -96, 88, -96, 88, -172, 298, -172, 298, 68, 66, 68, 66, 480, 586, 480, 586, 86, 680, 36, 768, 396, 444, 674, -134, 574, -204, 96)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, -98, -10, -270, 586, -270, 586, 86, 680, 36, 648, -378, 124, -392, -164, -250, -64, -18)
-
-[node name="StaticBody2D" parent="." instance=ExtResource("4_7if1s")]
-z_index = 4
-position = Vector2(409.99994, 120)
-rotation = -1.5758011
-scale = Vector2(0.7499425, 1.301492)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("4_7if1s")]
-z_index = 5
-position = Vector2(220, 352)
-rotation = -1.582119
-scale = Vector2(0.76470566, 1.3099539)
-skew = 0.0025911331
-
-[node name="doors" parent="." instance=ExtResource("5_v6avs")]
-z_index = 1
-position = Vector2(337.99997, 336)
-rotation = -0.03452632
-scale = Vector2(1.3589712, 1.5074818)
-
-[node name="StaticBody2D3" parent="." instance=ExtResource("4_7if1s")]
-z_index = 4
-position = Vector2(430, 332)
-rotation = 1.5703514
-scale = Vector2(0.5755182, 1.1971805)
-skew = -0.0058016777
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
-position = Vector2(2, 0)
-polygon = PackedVector2Array(410, 26, 410, 32, 474, 32, 474, 28, 474, 26)
-
-[node name="greenwall" parent="." instance=ExtResource("6_8qak7")]
-z_index = 3
-position = Vector2(251.99998, 304)
-scale = Vector2(0.68100435, 1.6756799)
-
-[node name="top door" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(186.00002, 376)
-rotation = -1.5570618
-scale = Vector2(1.9010911, 2.0640354)
-
-[node name="top door2" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(184.00002, 344)
-rotation = -1.5595164
-scale = Vector2(1.3481035, 2.1279988)
-
-[node name="greenwall2" parent="." instance=ExtResource("6_8qak7")]
-z_index = 3
-position = Vector2(366, 303.99997)
-scale = Vector2(0.66370666, 1.6756799)
-
-[node name="top door3" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(300, 376)
-rotation = -1.5570618
-scale = Vector2(1.9010911, 2.0640354)
-
-[node name="top door4" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(298, 344)
-rotation = -1.5595164
-scale = Vector2(1.3481035, 2.1279988)
-
-[node name="redwall" parent="." instance=ExtResource("8_vm4q1")]
-z_index = 4
-position = Vector2(440, 76)
-scale = Vector2(0.86785734, 0.97414416)
-
-[node name="top door5" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(376, 143.99997)
-rotation = -1.5570618
-scale = Vector2(1.9010911, 2.0640354)
-
-[node name="top door6" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(374, 112)
-rotation = -1.5595164
-scale = Vector2(1.3481035, 2.1279988)
-
-[node name="top door7" parent="." instance=ExtResource("7_0f2yp")]
-position = Vector2(372.00003, 298.00003)
-rotation = -0.010085968
-scale = Vector2(1.6354623, 2.405158)
-
-[node name="top door8" parent="." instance=ExtResource("7_0f2yp")]
-position = Vector2(383.99997, 298)
-rotation = -0.010085968
-scale = Vector2(1.6354623, 2.405158)
-
-[node name="top door9" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(217.99998, -302)
-rotation = -0.010085968
-scale = Vector2(1.6394452, 2.4051979)
-
-[node name="top door10" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(229.99992, -302.00006)
-rotation = -0.010085968
-scale = Vector2(1.6354623, 2.405158)
-
-[node name="top door11" parent="." instance=ExtResource("7_0f2yp")]
-z_index = 5
-position = Vector2(150, 298.00003)
-rotation = -0.010085968
-scale = Vector2(1.6354623, 2.405158)
-
-[node name="metal top door" parent="." instance=ExtResource("9_ud676")]
-z_index = 5
-position = Vector2(178, 366)
-scale = Vector2(1.3898036, 1.7741333)
+layer_0/tile_data = PackedInt32Array(131074, 1900544, 6)
