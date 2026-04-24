@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8ki8gg6e5d6y"]
+[gd_scene load_steps=14 format=3 uid="uid://c8ki8gg6e5d6y"]
 
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bi8u7ifvx6tlt" path="res://game.gd" id="1_eow3j"]
@@ -12,10 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_iotsf"]
+[ext_resource type="PackedScene" uid="uid://e2x5jtwpguiv" path="res://main_menu.tscn" id="13_lc2xo"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(4, 0)
 script = ExtResource("1_eow3j")
+
+[node name="MainMenu" parent="." instance=ExtResource("13_lc2xo")]
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_e2o6t")]
 z_index = 0
