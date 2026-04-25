@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://e2x5jtwpguiv"]
+[gd_scene load_steps=3 format=3 uid="uid://bka6ugabg8mvp"]
 
 [ext_resource type="Texture2D" uid="uid://kc4sadhfsu7x" path="res://mapp-export.png" id="1_06t4h"]
-[ext_resource type="Script" uid="uid://d1bqsou3vvd62" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_7vrkn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_iotsf"]
-[ext_resource type="PackedScene" uid="uid://e2x5jtwpguiv" path="res://main_menu.tscn" id="13_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://bka6ugabg8mvp" path="res://main_menu.tscn" id="13_lc2xo"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(4, 0)
@@ -29,7 +29,7 @@ scale = Vector2(3.9760523, 3.829717)
 position = Vector2(764, 1275)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(119, -13)
+position = Vector2(901, 1361)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("3_feb5d")]
 position = Vector2(119, 102)
