@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kgdqim13e1n0"]
+
+[ext_resource type="Texture2D" uid="uid://bl77caluce4qq" path="res://Sprite-0007.png" id="1_kyatr"]
+
+[node name="top of blue wall" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kyatr")
