@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8ki8gg6e5d6y"]
+[gd_scene load_steps=15 format=3 uid="uid://c8ki8gg6e5d6y"]
 
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bi8u7ifvx6tlt" path="res://game.gd" id="1_eow3j"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_iotsf"]
 [ext_resource type="PackedScene" uid="uid://bka6ugabg8mvp" path="res://main_menu.tscn" id="13_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://crqnjnyggwyt7" path="res://Key.tscn" id="14_215e1"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(4, 0)
@@ -79,3 +80,7 @@ position = Vector2(521, 102)
 format = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Key" parent="." instance=ExtResource("14_215e1")]
+light_mask = 4
+position = Vector2(589, 1480)
