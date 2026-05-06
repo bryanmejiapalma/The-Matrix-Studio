@@ -38,8 +38,8 @@ func _physics_process(delta: float) -> void:
 	if is_dead: return 
 
 	# --- MOVEMENT INPUTS ---
-	var vertical_input := Input.get_axis("ui_up", "ui_down")
-	var horizontal_input := Input.get_axis("ui_left", "ui_right")
+	var vertical_input := Input.get_axis("up", "Down")
+	var horizontal_input := Input.get_axis("Left", "Right")
 
 	# --- SPRINT LOGIC ---
 	var current_speed = WALK_SPEED
