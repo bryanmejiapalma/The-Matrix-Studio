@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dthvy45kmumu2"]
 
-[ext_resource type="PackedScene" uid="uid://dthilph7k8yvd" path="res://Walls.tscn" id="1_hlnq3"]
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="2_niho5"]
+[ext_resource type="PackedScene" uid="uid://p0m60ckowet6" path="res://animatable_body_2d.tscn" id="3_niho5"]
 
 [node name="interact" type="Node2D"]
 
-[node name="StaticBody2D" parent="." instance=ExtResource("1_hlnq3")]
-
 [node name="Player" parent="." instance=ExtResource("2_niho5")]
-position = Vector2(491, 133)
+position = Vector2(327, 157)
+
+[node name="AnimatableBody2D" parent="." instance=ExtResource("3_niho5")]
+position = Vector2(537, 111)

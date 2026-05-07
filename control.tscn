@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://cuhjig0etxmnd"]
+
+[ext_resource type="Script" uid="uid://bi8u7ifvx6tlt" path="res://game.gd" id="1_eh0v1"]
+[ext_resource type="PackedScene" uid="uid://2voi264ic4d4" path="res://Map.tscn" id="2_am1vj"]
+[ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="3_g31lc"]
+[ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="3_qtu10"]
+[ext_resource type="PackedScene" uid="uid://dthilph7k8yvd" path="res://Walls.tscn" id="4_knq72"]
+[ext_resource type="PackedScene" uid="uid://diiaq0oy71ohy" path="res://apple.tscn" id="5_xvdhi"]
+[ext_resource type="PackedScene" uid="uid://tveac6mrpxec" path="res://baseball_bat.tscn" id="6_oq4si"]
+[ext_resource type="PackedScene" uid="uid://de4kmcsnttwa0" path="res://enemy.tscn" id="7_m4egf"]
+[ext_resource type="PackedScene" uid="uid://b3cxq6uhoyp4x" path="res://main.tscn" id="9_pi4e7"]
+[ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_kuuv8"]
+[ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_ou021"]
+[ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_3fl80"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(4, 0)
+script = ExtResource("1_eh0v1")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_am1vj")]
+position = Vector2(178.99998, -22)
+scale = Vector2(3.9760523, 3.829717)
+
+[node name="Player" parent="." instance=ExtResource("3_g31lc")]
+position = Vector2(245, 325)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("4_knq72")]
+position = Vector2(119, -13)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("4_knq72")]
+position = Vector2(119, 102)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("4_knq72")]
+position = Vector2(113, 396)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("4_knq72")]
+position = Vector2(180, 663)
+rotation = -1.5916418
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("4_knq72")]
+position = Vector2(201.99998, 37)
+rotation = -1.586398
+
+[node name="Apple" parent="." instance=ExtResource("5_xvdhi")]
+position = Vector2(830, 14)
+
+[node name="baseball bat" parent="." instance=ExtResource("6_oq4si")]
+position = Vector2(416, 325)
+
+[node name="enemy" parent="." instance=ExtResource("7_m4egf")]
+position = Vector2(1036, 425)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.2357319, 0.23573193, 0.2357319, 1)
+
+[node name="Backgrounde\'" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -100
+position = Vector2(54, 0)
+scale = Vector2(2048, 2048)
+texture = ExtResource("3_qtu10")
+
+[node name="main" parent="." instance=ExtResource("9_pi4e7")]
+position = Vector2(-7, -128)
+
+[node name="Raton" parent="." instance=ExtResource("10_kuuv8")]
+
+[node name="Banana" parent="." instance=ExtResource("11_ou021")]
+position = Vector2(1044, 63)
+
+[node name="Locker" parent="." instance=ExtResource("12_3fl80")]
+position = Vector2(521, 102)
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]

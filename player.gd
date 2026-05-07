@@ -3,60 +3,107 @@ class_name Player
 
 const WALK_SPEED = 300
 const BOOST_SPEED = 600
-const SPRINT_TIME_MAX = 2.5  # Max sprint duration in seconds
+const SPRINT_TIME_MAX = 2.5 
 
 var is_dead: bool = false
+var is_hidden: bool = false 
 var health = 100
 var max_health = 100
 var can_take_damage: bool = true 
 var held_item = null 
 
-# --- NEW: STAMINA VARIABLE ---
+# --- STAMINA ---
 var sprint_stamina: float = SPRINT_TIME_MAX 
 
-@onready var sprite_2d: Sprite2D = $Sprite2D 
+@onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_bar = $ProgressBar
 @onready var pickup_zone = $PickupZone 
 @onready var hold_position = $HoldPosition 
 
+# Optional: If you add a ProgressBar for stamina, name it StaminaBar
+@onready var stamina_bar = get_node_or_null("StaminaBar") 
+
 func _ready():
-	health = max_health # Start at 100
+	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
+	
+	if stamina_bar:
+		stamina_bar.max_value = SPRINT_TIME_MAX
+		stamina_bar.value = SPRINT_TIME_MAX
+		
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return 
 
-	# --- FALL OFF MAP CHECK ---
-	if global_position.y > 1000: 
-		die()
+	# --- MOVEMENT INPUTS ---
+	var vertical_input := Input.get_axis("up", "Down")
+	var horizontal_input := Input.get_axis("Left", "Right")
 
-	var vertical_input := Input.get_axis("ui_up", "ui_down")
-	var horizontal_input := Input.get_axis("ui_left", "ui_right")
-
-	# --- UPDATED SPRINT LOGIC ---
+	# --- SPRINT LOGIC ---
 	var current_speed = WALK_SPEED
 	
-	# Check if boost is pressed AND we have stamina left
-	if Input.is_action_pressed("boost") and sprint_stamina > 0:
+	if Input.is_action_pressed("boost") and sprint_stamina > 0 and (horizontal_input != 0 or vertical_input != 0):
 		current_speed = BOOST_SPEED
-		sprint_stamina -= delta # Drain stamina over time
+		sprint_stamina -= delta
 	else:
-		# Refill stamina slowly when not sprinting
 		sprint_stamina = move_toward(sprint_stamina, SPRINT_TIME_MAX, delta * 0.5)
 
-	velocity.x = horizontal_input * current_speed
-	velocity.y = vertical_input * current_speed
+	# Update stamina UI if it exists
+	if stamina_bar:
+		stamina_bar.value = sprint_stamina
+
+	# --- MOVEMENT CALCULATION ---
+	var input_vector = Vector2(horizontal_input, vertical_input).normalized()
+	
+	# If hidden, don't move
+	if is_hidden:
+		velocity = Vector2.ZERO
+	else:
+		velocity = input_vector * current_speed
 
 	move_and_slide()
+	update_animation(horizontal_input, vertical_input)
 
-# --- THE DAMAGE SYSTEM ---
+# --- ANIMATION SYSTEM ---
+func update_animation(h_input: float, v_input: float):
+	if is_dead:
+		if sprite_2d.animation != "default":
+			sprite_2d.play("default")
+		return
+
+	var is_moving = h_input != 0 or v_input != 0
+	var is_sprinting = Input.is_action_pressed("boost") and sprint_stamina > 0
+
+	if is_moving and not is_hidden:
+		sprite_2d.speed_scale = 1.5 if is_sprinting else 1.0
+
+		if abs(v_input) > abs(h_input):
+			if v_input < 0:
+				if sprite_2d.animation != "walk_up":
+					sprite_2d.play("walk_up")
+			else:
+				if sprite_2d.animation != "walk_down":
+					sprite_2d.play("walk_down")
+		else:
+			if sprite_2d.animation != "walk_left_right":
+				sprite_2d.play("walk_left_right")
+			sprite_2d.flip_h = h_input < 0
+	else:
+		sprite_2d.speed_scale = 1.0
+		if sprite_2d.animation != "default":
+			sprite_2d.play("default")
+
+# --- DAMAGE SYSTEM ---
 func take_damage(amount: int):
-	if is_dead or not can_take_damage: return
+	if is_dead or not can_take_damage or is_hidden: return
 	
 	health -= amount
 	health_bar.value = health
-	print("Player Health: ", health)
+	
+	if has_node("Camera2D"):
+		$Camera2D.apply_shake(15.0)
 	
 	if health <= 0:
 		die()
@@ -65,33 +112,40 @@ func take_damage(amount: int):
 
 func trigger_invincibility():
 	can_take_damage = false
-	modulate = Color.RED 
+	modulate = Color(1, 0.5, 0.5, 1) # Flashes red-ish
 	await get_tree().create_timer(1.0).timeout 
 	modulate = Color.WHITE
 	can_take_damage = true
 
 func die():
 	if is_dead: return
-	
 	is_dead = true
+	
+	# Make sure red vignette disappears when you die
+	var vignette = get_node_or_null("CanvasLayer/BloodVignette")
+	if vignette: vignette.modulate.a = 0
+	
 	rotation_degrees = 90
-	print("Player is down!")
-
-	# --- RESPAWN LOGIC ---
 	await get_tree().create_timer(2.0).timeout
 	get_tree().reload_current_scene()
 
-# --- PICKUP LOGIC ---
+# --- INPUT HANDLING ---
 func _input(_event):
-	if Input.is_action_just_pressed("interact"):
-		if held_item: drop_item()
-		else: pick_up_item()
+	if is_hidden or is_dead: return
 
+	if Input.is_action_just_pressed("interact"):
+		if held_item:
+			drop_item()
+		else:
+			pick_up_item()
+
+# --- PICKUP LOGIC ---
 func pick_up_item():
 	var areas = pickup_zone.get_overlapping_areas()
 	for area in areas:
 		if area.is_in_group("pickable"):
 			held_item = area
+			# Simple way to attach item to player
 			held_item.get_parent().remove_child(held_item)
 			hold_position.add_child(held_item)
 			held_item.position = Vector2.ZERO
