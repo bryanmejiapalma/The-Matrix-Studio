@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://mhdc3ujtoliq"]
+
+[ext_resource type="Script" uid="uid://bbipkca1dec45" path="res://paused_menu.gd" id="1_q68yk"]
+
+[sub_resource type="SystemFont" id="SystemFont_cufx8"]
+font_names = PackedStringArray("Shobhika")
+
+[sub_resource type="SystemFont" id="SystemFont_3hgkl"]
+font_names = PackedStringArray("Shobhika")
+
+[sub_resource type="SystemFont" id="SystemFont_lrnew"]
+font_names = PackedStringArray("Shobhika")
+
+[sub_resource type="SystemFont" id="SystemFont_mj2wu"]
+font_names = PackedStringArray("Shobhika")
+
+[node name="PausedMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_q68yk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -230.0
+offset_right = 141.5
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="PausedLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.00688539, 0.0068854, 0.00688539, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.666667, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.666667, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_cufx8")
+theme_override_font_sizes/font_size = 75
+text = "	PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0.666667, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_3hgkl")
+theme_override_font_sizes/font_size = 50
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_lrnew")
+theme_override_font_sizes/font_size = 50
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0.666667, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_mj2wu")
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
