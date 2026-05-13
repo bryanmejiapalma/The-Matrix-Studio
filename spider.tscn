@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0abvxad53cpf"]
+
+[ext_resource type="Script" uid="uid://dnct0wcrcc772" path="res://spider.gd" id="1_qrebf"]
+[ext_resource type="Texture2D" uid="uid://b3spfxuwdmfti" path="res://icon.svg" id="2_1yt70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vivtl"]
+radius = 88.005684
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_binfs"]
+radius = 97.18539
+
+[node name="Spider" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
+script = ExtResource("1_qrebf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1yt70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vivtl")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_binfs")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

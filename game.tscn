@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8ki8gg6e5d6y"]
+[gd_scene load_steps=17 format=3 uid="uid://c8ki8gg6e5d6y"]
 
 [ext_resource type="PackedScene" uid="uid://o6yxgp3jif0q" path="res://Player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bi8u7ifvx6tlt" path="res://game.gd" id="1_eow3j"]
@@ -9,12 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://tveac6mrpxec" path="res://baseball_bat.tscn" id="6_ryrav"]
 [ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://b3cxq6uhoyp4x" path="res://main.tscn" id="9_vef74"]
-[ext_resource type="PackedScene" path="res://raton.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_iotsf"]
-[ext_resource type="PackedScene" uid="uid://bka6ugabg8mvp" path="res://main_menu.tscn" id="13_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://e2x5jtwpguiv" path="res://main_menu.tscn" id="13_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://crqnjnyggwyt7" path="res://Key.tscn" id="14_215e1"]
 [ext_resource type="PackedScene" uid="uid://p0m60ckowet6" path="res://animatable_body_2d.tscn" id="15_7sc4i"]
+[ext_resource type="PackedScene" uid="uid://c0abvxad53cpf" path="res://spider.tscn" id="16_80cx4"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(4, 0)
@@ -47,9 +48,6 @@ rotation = -1.586398
 [node name="Apple" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(830, 14)
 
-[node name="baseball bat" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(416, 325)
-
 [node name="enemy" parent="." instance=ExtResource("6_eow3j")]
 position = Vector2(1036, 425)
 
@@ -59,7 +57,7 @@ color = Color(0.2357319, 0.23573193, 0.2357319, 1)
 [node name="Backgrounde\'" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -100
-position = Vector2(54, 0)
+position = Vector2(1455, 1843)
 scale = Vector2(2048, 2048)
 texture = ExtResource("8_j5wjh")
 
@@ -74,11 +72,6 @@ position = Vector2(1044, 63)
 [node name="Locker" parent="." instance=ExtResource("12_iotsf")]
 position = Vector2(521, 102)
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-
 [node name="Key" parent="." instance=ExtResource("14_215e1")]
 light_mask = 4
 position = Vector2(589, 1480)
@@ -86,3 +79,9 @@ position = Vector2(589, 1480)
 [node name="AnimatableBody2D" parent="." instance=ExtResource("15_7sc4i")]
 position = Vector2(919, 1481)
 scale = Vector2(2.5518875, 2.1202009)
+
+[node name="Spider" parent="." instance=ExtResource("16_80cx4")]
+position = Vector2(2197, 1559)
+
+[node name="baseball bat" parent="." instance=ExtResource("6_ryrav")]
+position = Vector2(1282, 1412)
