@@ -4,15 +4,19 @@
 
 [sub_resource type="SystemFont" id="SystemFont_cufx8"]
 font_names = PackedStringArray("Shobhika")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_3hgkl"]
 font_names = PackedStringArray("Shobhika")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_lrnew"]
 font_names = PackedStringArray("Shobhika")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_mj2wu"]
 font_names = PackedStringArray("Shobhika")
+subpixel_positioning = 0
 
 [node name="PausedMenu" type="Control"]
 process_mode = 3
@@ -45,15 +49,15 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.00688539, 0.0068854, 0.00688539, 1)
-theme_override_colors/font_shadow_color = Color(1, 0.666667, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0.666667, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.8509804, 0.5372549, 1, 1)
+theme_override_colors/font_outline_color = Color(0.060197525, 0.42652532, 2.8878452e-07, 1)
 theme_override_fonts/font = SubResource("SystemFont_cufx8")
 theme_override_font_sizes/font_size = 75
 text = "	PAUSED"
 horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
-modulate = Color(1, 0.666667, 0, 1)
+modulate = Color(0.84978807, 0.53762597, 1, 1)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_3hgkl")
 theme_override_font_sizes/font_size = 50
@@ -67,8 +71,12 @@ theme_override_font_sizes/font_size = 50
 text = "RESTART"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-modulate = Color(1, 0.666667, 0, 1)
+modulate = Color(0.8509804, 0.5372549, 1, 1)
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_mj2wu")
 theme_override_font_sizes/font_size = 50
 text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

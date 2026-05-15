@@ -139,7 +139,6 @@ script = ExtResource("1_kpjcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-4.9999924, 91)
 scale = Vector2(3.1150002, 3.04)
 texture = ExtResource("2_kne1u")
