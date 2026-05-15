@@ -4,11 +4,13 @@ var health = 20
 var speed = 110.0
 var damage = 8
 var player = null
+var spawn_amount = 5
 
 # Ensure these paths match your FileSystem EXACTLY!
 # If your files are "Apple.tscn" with a capital A, change these!
 var apple_scene = preload("res://apple.tscn")
 var banana_scene = preload("res://banana.tscn")
+
 
 func _ready():
 	# Explicitly add to group in code to be safe

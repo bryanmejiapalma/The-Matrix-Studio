@@ -7,7 +7,6 @@ extends AnimatableBody2D
 
 var is_open = false
 var target_angle = 0.0
-
 # This locks the hinge position so the door never "slides" forward
 @onready var hinge_global_pos = global_position 
 
@@ -15,6 +14,7 @@ func _input(event):
 	# Make sure you have an action named "enter" in Input Map
 	if event.is_action_pressed("enter"):
 		toggle_door()
+	
 
 func toggle_door():
 	# Keep the corner stuck at the original coordinate

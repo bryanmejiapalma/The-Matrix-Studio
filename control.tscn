@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://tveac6mrpxec" path="res://baseball_bat.tscn" id="6_oq4si"]
 [ext_resource type="PackedScene" uid="uid://de4kmcsnttwa0" path="res://enemy.tscn" id="7_m4egf"]
 [ext_resource type="PackedScene" uid="uid://b3cxq6uhoyp4x" path="res://main.tscn" id="9_pi4e7"]
-[ext_resource type="PackedScene" uid="uid://dkdk4308g8r3q" path="res://raton.tscn" id="10_kuuv8"]
+[ext_resource type="PackedScene" path="res://raton.tscn" id="10_kuuv8"]
 [ext_resource type="PackedScene" uid="uid://bdkilr7cajopf" path="res://banana.tscn" id="11_ou021"]
 [ext_resource type="PackedScene" uid="uid://b5vw17gpfij0w" path="res://locker.tscn" id="12_3fl80"]
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 position = Vector2(4, 0)
 script = ExtResource("1_eh0v1")
 
@@ -51,7 +51,6 @@ position = Vector2(416, 325)
 position = Vector2(1036, 425)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.2357319, 0.23573193, 0.2357319, 1)
 
 [node name="Backgrounde\'" type="Sprite2D" parent="."]

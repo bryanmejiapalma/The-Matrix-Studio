@@ -1,4 +1,16 @@
-[gd_resource type="Theme" format=3 uid="uid://bx5ubw3h3ef5f"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bx5ubw3h3ef5f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsqoc"]
+content_margin_left = 48.0
+content_margin_right = 48.0
+content_margin_bottom = 32.0
+bg_color = Color(0.9605523, 0.39136234, 0.30792326, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [resource]
 default_font_size = 48
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_gsqoc")
