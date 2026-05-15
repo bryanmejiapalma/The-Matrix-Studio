@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://de4kmcsnttwa0"]
 
 [ext_resource type="Script" uid="uid://gekymrs647t6" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://yluuq3nrjxvf" path="res://Sprite-0001.png" id="2_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://c1sjdoj8ywutg" path="res://witchhat489.png" id="2_3yqyl"]
 [ext_resource type="PackedScene" uid="uid://bhjm0wh2aj3d3" path="res://player_view.tscn" id="4_epg4t"]
 [ext_resource type="PackedScene" uid="uid://1x0jww8m2ku2" path="res://killzone.tscn" id="4_iifgy"]
 [ext_resource type="Texture2D" uid="uid://b76ab2iijn7dx" path="res://enemy exclamation.png" id="5_epg4t"]
@@ -15,14 +15,16 @@ radius = 2265.683
 
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(310, 276)
+scale = Vector2(0.8, 0.8)
 collision_layer = 2
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(19.500004, -21.999996)
-scale = Vector2(1.2299999, 1.2399999)
-texture = ExtResource("2_4gyqm")
+position = Vector2(-16.999996, -15.999996)
+rotation = 1.5945827
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_3yqyl")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 unique_name_in_owner = true
