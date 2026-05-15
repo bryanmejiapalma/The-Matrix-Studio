@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 		look_at(get_global_mouse_position())
 	
 	if is_held and can_swing:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if Input.is_action_just_pressed("hit"):
 			swing()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -89,6 +89,9 @@ func swing() -> void:
 	can_swing = false
 	is_swinging = true
 	
+	# Enable collision when the swing begins
+	shape.set_deferred("disabled", false)
+	
 	var start_rot = rotation_degrees
 	var end_rot = start_rot + 90 
 	
@@ -99,6 +102,7 @@ func swing() -> void:
 	await get_tree().create_timer(0.15).timeout
 	is_swinging = false  
 
+	# Disable collision during the 1-second cooldown
 	shape.set_deferred("disabled", true)
 	modulate.a = 0.3 
 	

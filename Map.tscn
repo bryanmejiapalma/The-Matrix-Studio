@@ -2005,7 +2005,7 @@ position = Vector2(506, 424)
 script = ExtResource("8_ud676")
 
 [node name="Timer" type="Timer" parent="KitchenSpawner"]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
 
 [connection signal="timeout" from="KitchenSpawner/Timer" to="KitchenSpawner" method="_on_timer_timeout"]
