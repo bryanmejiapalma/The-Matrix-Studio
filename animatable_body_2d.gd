@@ -1,12 +1,13 @@
 extends AnimatableBody2D
 
-# Grab the nodes. If yours are named differently, change the names in quotes.
-@onready var segment_1 = $Sprite2D_Part1 
-@onready var segment_2 = $Sprite2D_Part2
-@onready var sound_player = $AudioStreamPlayer2D 
+# SAFE: Using get_node_or_null to prevent immediate crashes if parts are missing
+@onready var segment_1 = get_node_or_null("Sprite2D_Part1")
+@onready var segment_2 = get_node_or_null("Sprite2D_Part2")
+@onready var sound_player = get_node_or_null("AudioStreamPlayer2D")
 
 var is_open = false
 var target_angle = 0.0
+
 # This locks the hinge position so the door never "slides" forward
 @onready var hinge_global_pos = global_position 
 
@@ -14,7 +15,6 @@ func _input(event):
 	# Make sure you have an action named "enter" in Input Map
 	if event.is_action_pressed("enter"):
 		toggle_door()
-	
 
 func toggle_door():
 	# Keep the corner stuck at the original coordinate
@@ -46,17 +46,21 @@ func toggle_door():
 		# Animate the main rotation (The hinge)
 		tween.tween_property(self, "rotation_degrees", target_angle, 0.6)
 		
-		# Animate the fold (segment 2)
-		var fold_dir = 90 if target_angle > 0 else -90
-		tween.tween_property(segment_2, "rotation_degrees", fold_dir, 0.6)
+		# SAFE CHECK: Only animate segment_2 if it actually exists in the scene
+		if segment_2 and is_instance_valid(segment_2):
+			var fold_dir = 90 if target_angle > 0 else -90
+			tween.tween_property(segment_2, "rotation_degrees", fold_dir, 0.6)
 		
-		if sound_player:
+		if sound_player and is_instance_valid(sound_player):
 			sound_player.play()
 		is_open = true
 	else:
 		# CLOSE ANIMATION: Back to 0
 		tween.tween_property(self, "rotation_degrees", 0, 0.6)
-		tween.tween_property(segment_2, "rotation_degrees", 0, 0.6)
+		
+		# SAFE CHECK: Only animate segment_2 if it actually exists in the scene
+		if segment_2 and is_instance_valid(segment_2):
+			tween.tween_property(segment_2, "rotation_degrees", 0, 0.6)
 		is_open = false
 
 	# SOLID MODE: Re-enable collision only when the animation is finished

@@ -1,6 +1,8 @@
 extends StaticBody2D
 
-@onready var sound_player = $AudioStreamPlayer2D 
+# FIXED: Safely searches for the node. If missing, it returns null instead of crashing.
+@onready var sound_player = get_node_or_null("AudioStreamPlayer2D")
+
 var is_open = false
 
 # Set these in the Inspector
@@ -45,7 +47,8 @@ func toggle_door():
 		tween.tween_property(self, "position:x", start_pos.x + horizontal_dist, 0.4)
 		tween.tween_property(self, "position:y", start_pos.y - vertical_dist, 0.4)
 		
-		if sound_player:
+		# FIXED: Added safe instance checks before trying to play audio
+		if sound_player and is_instance_valid(sound_player):
 			sound_player.play()
 		is_open = true
 	else:
